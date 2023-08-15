@@ -1,0 +1,93 @@
+import random
+
+stage = [
+    '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''',
+    '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''',
+    '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''',
+    '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''',
+    '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''',
+    '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''',
+    '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+========='''
+]
+
+word_list = ['ardvark', 'baboon', 'camel']
+chosen_word = random.choice(word_list)
+
+lives = 6
+display = ['-'] * len(chosen_word)
+
+end_of_game = False
+#To make the game repeatable
+while not end_of_game:
+    guess = input('Enter your guess: ')
+    #You have to create a loop in diaplay and if the word in that position matches what the user entered, put it on top.
+    for position in range(len(chosen_word)):
+        if chosen_word[position] == guess:
+            display[position] = chosen_word[position]
+
+    print(display)
+   #If the user guesses wrong, reduce his score
+    if guess not in chosen_word:
+        lives -= 1
+        #They should be printed according to the user's score. Write the commands under the block of the rest of the codes
+        print(stage[lives])
+    #Our loop stops only when the user has filled all the blanks
+    if '-' not in display:
+        end_of_game = True
+        print('You win!')
+    #Game over conditions
+    if lives == 0:
+        end_of_game = True
+        print('You lose')
+
+
+
